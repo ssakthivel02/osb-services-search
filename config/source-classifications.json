@@ -1,0 +1,51 @@
+{
+  "version": "1.0.0",
+  "classifications": {
+    "verified": {
+      "indexable": true,
+      "searchable": true,
+      "rankingWeight": 1.0,
+      "displayLabel": "Verified source"
+    },
+    "traditional": {
+      "indexable": true,
+      "searchable": true,
+      "rankingWeight": 0.9,
+      "displayLabel": "Traditional source"
+    },
+    "scholarly": {
+      "indexable": true,
+      "searchable": true,
+      "rankingWeight": 0.95,
+      "displayLabel": "Scholarly source"
+    },
+    "oral": {
+      "indexable": true,
+      "searchable": true,
+      "rankingWeight": 0.75,
+      "displayLabel": "Oral tradition"
+    },
+    "needs_review": {
+      "indexable": true,
+      "searchable": true,
+      "rankingWeight": 0.5,
+      "displayLabel": "Needs review"
+    },
+    "restricted": {
+      "indexable": true,
+      "searchable": false,
+      "rankingWeight": 0.0,
+      "displayLabel": "Restricted"
+    }
+  },
+  "requiredDocumentFields": [
+    "document_id",
+    "tenant_id",
+    "locale",
+    "title",
+    "body",
+    "source_id",
+    "source_classification",
+    "updated_at"
+  ]
+}

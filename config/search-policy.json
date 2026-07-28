@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "apiPrefix": "/api/v1/search",
+  "supportedLocales": ["en-GB", "ta-IN"],
+  "defaultLocale": "en-GB",
+  "normalisation": {
+    "unicodeForm": "NFC",
+    "caseFoldLatin": true,
+    "trimWhitespace": true,
+    "collapseWhitespace": true,
+    "preserveTamilScript": true,
+    "transliterationOptional": true
+  },
+  "query": {
+    "minimumLength": 2,
+    "maximumLength": 256,
+    "maximumTerms": 32,
+    "maximumFilters": 12,
+    "defaultPageSize": 20,
+    "maximumPageSize": 100,
+    "maximumOffset": 10000,
+    "timeoutMilliseconds": 3000
+  },
+  "security": {
+    "authenticationRequiredByDefault": true,
+    "tenantClaim": "tenant_id",
+    "tenantFilterMandatory": true,
+    "requestTenantOverrideAllowed": false,
+    "defaultDenyUnknownFilters": true,
+    "rejectControlCharacters": true,
+    "rejectWildcardOnlyQueries": true,
+    "escapeBackendQuerySyntax": true,
+    "logRawQueries": false,
+    "redactSensitiveTerms": true
+  },
+  "ranking": {
+    "lexicalEnabled": true,
+    "semanticEnabled": true,
+    "hybridEnabled": true,
+    "minimumSemanticScore": 0.55,
+    "maximumSemanticCandidates": 200,
+    "freshnessBoostMaximum": 0.15,
+    "verifiedSourceBoost": 0.2,
+    "needsReviewPenalty": 0.25,
+    "deterministicTieBreak": "document_id"
+  },
+  "results": {
+    "requireSourceId": true,
+    "requireSourceClassification": true,
+    "requireLocale": true,
+    "requireTenantId": true,
+    "includeScoreBreakdown": false,
+    "maximumSnippetCharacters": 320,
+    "highlightMaximumFragments": 3
+  },
+  "rateLimits": {
+    "anonymousPerMinute": 0,
+    "authenticatedPerMinute": 120,
+    "privilegedPerMinute": 300,
+    "burstMultiplier": 2
+  }
+}
