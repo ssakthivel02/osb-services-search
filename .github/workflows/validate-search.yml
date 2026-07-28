@@ -1,0 +1,35 @@
+name: Validate Search Baseline
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: search-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate search policy and source registry
+        run: python3 scripts/validate_search_baseline.py
+      - name: Run negative search security cases
+        run: python3 scripts/test_search_security_cases.py
+      - name: Compile validators
+        run: python3 -m py_compile scripts/*.py
+      - name: Verify required documentation
+        run: |
+          test -f docs/THREAT_MODEL.md
+          test -f docs/SEARCH_OPERATIONS_RUNBOOK.md
+          test -f docs/QUALITY_EVALUATION.md
+          test -f docs/PRODUCTION_READINESS.md
+          test -f docs/adr/0001-hybrid-multilingual-search.md
